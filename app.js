@@ -172,12 +172,14 @@ function toggleComments(postCardElement) {
 
 $("#user-list").on("click", ".user-card .load-posts", function () {
   const user = $(this).closest(".user-card").data("user");
-  fetchUserPosts(user.id, user).then(renderPostList);
+  fetchUserPosts(user.id, user).then(renderPostList)
+  .catch(function(){renderPostList(user.posts)});
 });
 
 $("#user-list").on("click", ".user-card .load-albums", function () {
   const user = $(this).closest(".user-card").data("user");
-  fetchUserAlbumList(user.id, user).then(renderAlbumList);
+  fetchUserAlbumList(user.id, user).then(renderAlbumList)
+  .catch(function(){renderAlbumList(user.albums)});
 });
 
 $("#post-list").on("click", ".post-card .toggle-comments", function () {
